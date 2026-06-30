@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"require\\('./server.js'\\)\")",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/style.css)",
+      "Bash(kill %1)",
+      "Bash(node _smoke.js)",
+      "Bash(node -c server.js)",
+      "Bash(node -c public/game.js)",
+      "Bash(timeout 65 node _smoke2.js)",
+      "Bash(rm -f _smoke2.js)",
+      "Bash(node -c public/fish-art.js)",
+      "Bash(node -e ' *)"
+    ]
+  }
+}

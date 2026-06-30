@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>🎣 摸鱼时刻 · 在线钓鱼</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 登录遮罩 -->
+  <div id="login" class="login">
+    <div class="login-card">
+      <div class="login-emoji">🎣</div>
+      <h1>摸鱼时刻</h1>
+      <p class="login-sub">输入名字，开始这场光明正大的摸鱼</p>
+      <input id="nameInput" type="text" maxlength="16" placeholder="给自己起个钓鱼佬名号…" autocomplete="off" />
+      <button id="startBtn">开始钓鱼</button>
+      <p class="login-tip">提示：鱼上钩后鱼竿会抖动，<b>越稀有的鱼留给你的收杆时间越短</b>。</p>
+    </div>
+  </div>
+
+  <!-- 游戏主场景：第一视角湖面 -->
+  <div id="scene" class="scene hidden">
+    <div class="sky"></div>
+    <div class="sun"></div>
+    <div class="far-hills"></div>
+    <div class="water">
+      <div class="ripples"></div>
+    </div>
+
+    <!-- 第一视角的鱼竿（弧形，SVG 绘制） -->
+    <div id="rod" class="rod">
+      <svg class="rod-svg" viewBox="0 0 180 360" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="poleGrad" x1="1" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#3f2a14" />
+            <stop offset="0.45" stop-color="#8b5a2b" />
+            <stop offset="0.8" stop-color="#c79a5e" />
+            <stop offset="1" stop-color="#e8c98a" />
+          </linearGradient>
+        </defs>
+        <!-- 弧形竿身 -->
+        <path class="rod-pole-path" d="M152 360 Q156 170 56 38" />
+        <!-- 竿梢小环（出线口） -->
+        <circle class="rod-tip" cx="56" cy="38" r="4" />
+        <!-- 卷线轮 -->
+        <circle class="rod-reel-out" cx="150" cy="320" r="13" />
+        <circle class="rod-reel-in" cx="150" cy="320" r="6" />
+      </svg>
+      <!-- 钓线从竿梢垂下 -->
+      <div id="line" class="rod-line"><div id="bobber" class="bobber"></div></div>
+    </div>
+
+    <!-- 中央状态提示 -->
+    <div id="status" class="status">点击下方按钮抛竿</div>
+
+    <!-- 图鉴按钮 -->
+    <button id="codexBtn" class="codex-btn">📖 图鉴</button>
+
+    <!-- 渔获弹出 -->
+    <div id="catchPopup" class="catch-popup hidden"></div>
+
+    <!-- 全场喜报滚动 -->
+    <div id="announce" class="announce"></div>
+
+    <!-- 主操作按钮 -->
+    <button id="actionBtn" class="action-btn">🎣 抛竿</button>
+
+    <!-- 在线玩家 / 排行榜面板 -->
+    <aside id="panel" class="panel">
+      <div class="panel-head">
+        <span>🌊 在线钓鱼佬 <em id="onlineCount">0</em></span>
+        <button id="panelToggle" class="panel-toggle">收起</button>
+      </div>
+      <ul id="roster" class="roster"></ul>
+      <div class="panel-legend" id="legend"></div>
+    </aside>
+
+    <!-- 自己的统计条 -->
+    <div id="myStats" class="my-stats"></div>
+
+    <!-- 图鉴弹窗（动态填充） -->
+    <div id="codexMask" class="codex-mask hidden"></div>
+
+    <!-- 金/红特殊检视动画（动态填充） -->
+    <div id="inspectMask" class="hidden"></div>
+  </div>
+
+  <script src="fish-art.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
